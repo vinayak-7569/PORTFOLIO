@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration and Login Page</title>
+  <style>
+    body {
+        background-image:url('images.jpg') ;
+        background-size: 2500px;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color:blue transparent;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"], input[type="password"], input[type="email"], input[type="date"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .toggle-btn {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .toggle-btn a {
+      color: #007bff;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .toggle-btn a:hover {
+      text-decoration: underline;
+    }
+
+    .form-container {
+      display: none;
+    }
+
+    .active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Registration Form -->
+    <div id="register-form" class="form-container active">
+      <h2>Register</h2>
+      <form onsubmit="handleRegister(event)">
+        <input type="text" id="reg-username" placeholder="Username" required>
+        <input type="email" id="reg-email" placeholder="Email" required>
+        <input type="password" id="reg-password" placeholder="Password" required>
+        <input type="date" id="reg-dob" placeholder="Date of Birth" required>
+        <input type="text" id="reg-city" placeholder="City" required>
+        <button type="submit">Register</button>
+      </form>
+      <div class="toggle-btn">
+        <p>Already have an account? <a href="javascript:void(0)" onclick="toggleForm('login')">Login here</a></p>
+      </div>
+    </div>
+
+    <!-- Login Form -->
+    <div id="login-form" class="form-container">
+      <h2>Login</h2>
+      <form onsubmit="handleLogin(event)">
+        <input type="text" id="login-username" placeholder="Username" required>
+        <input type="password" id="login-password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+      <div class="toggle-btn">
+        <p>Don't have an account? <a href="javascript:void(0)" onclick="toggleForm('register')">Register here</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Function to toggle between registration and login forms
+    function toggleForm(formType) {
+      const registerForm = document.getElementById('register-form');
+      const loginForm = document.getElementById('login-form');
+      
+      if (formType === 'register') {
+        registerForm.classList.add('active');
+        loginForm.classList.remove('active');
+      } else {
+        loginForm.classList.add('active');
+        registerForm.classList.remove('active');
+      }
+    }
+
+    // Function to handle registration form submission
+    function handleRegister(event) {
+      event.preventDefault();
+      
+      // Getting input values from the registration form
+      const username = document.getElementById('reg-username').value;
+      const email = document.getElementById('reg-email').value;
+      const password = document.getElementById('reg-password').value;
+      const dob = document.getElementById('reg-dob').value;
+      const city = document.getElementById('reg-city').value;
+
+      // Simple validation
+      if (!username || !email || !password || !dob || !city) {
+        alert('Please fill in all fields');
+        return;
+      }
+
+      // For demo purposes, log the registration details
+      console.log('Registered with:', { username, email, password, dob, city });
+
+      // Simulate a successful registration
+      alert('Registration successful!');
+      
+      // Switch to login form after successful registration
+      toggleForm('login');
+    }
+
+    // Function to handle login form submission
+    function handleLogin(event) {
+      event.preventDefault();
+      
+      // Getting input values from the login form
+      const username = document.getElementById('login-username').value;
+      const password = document.getElementById('login-password').value;
+
+      // Simple validation
+      if (!username || !password) {
+        alert('Please fill in all fields');
+        return;
+      }
+
+      // For demo purposes, log the login details
+      console.log('Logged in with:', { username, password });
+
+      // Simulate a successful login
+      alert('Login successful!');
+    }
+  </script>
+
+</body>
+</html>
